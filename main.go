@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"blog_server/core"
+	"blog_server/global"
+	"fmt"
+)
 
 func main() {
-	fmt.Println("hello world")
+	core.InitConfig()
+	global.DB = core.InitGorm()
+	fmt.Println(global.DB)
 }
