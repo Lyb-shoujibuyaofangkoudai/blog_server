@@ -13,8 +13,8 @@ system:
 
 
 logger:
-  level: info # 日志级别
+  level: info # 日志最低显示级别
   prefix: "[blog]" # 日志前缀
-  direct: ./logs/ # 日志文件路径
+  direct: ./logs # 日志文件路径
   show_line: true # 是否显示行号
   log_in_console: true # 是否在控制台打印
