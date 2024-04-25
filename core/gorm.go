@@ -11,11 +11,11 @@ import (
 
 func InitGorm() *gorm.DB {
 	if global.Config.Mysql.Host == "" {
-		fmt.Println("未配置数据库信息", global.Config.Mysql)
+		global.Log.Warnf("未配置数据库信息")
 		return nil
 	}
 	dsn := global.Config.Mysql.Dsn()
-	fmt.Println("查看数据库连接地址：", dsn)
+	global.Log.Infof("查看数据库连接地址：%s", dsn)
 	var mysqlLogger logger.Interface
 	if global.Config.System.Env == "env" {
 		// 开发环境显示的sql
@@ -23,12 +23,13 @@ func InitGorm() *gorm.DB {
 	} else {
 		mysqlLogger = logger.Default.LogMode(logger.Error)
 	}
+	//global.MysqlLog = logger.Default.LogMode(logger.Info)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: mysqlLogger,
 	})
 	if err != nil {
-		panic(err)
+		global.Log.Fatal(fmt.Sprintf("数据库连接失败: %s", err))
 	}
 
 	sqlDB, err := db.DB()

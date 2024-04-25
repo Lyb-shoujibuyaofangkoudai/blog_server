@@ -7,7 +7,8 @@ import (
 )
 
 var (
-	Config *config.Config
-	DB     *gorm.DB
-	Log    *logrus.Logger
+	Config   *config.Config
+	DB       *gorm.DB
+	Log      *logrus.Logger
+	MysqlLog *logrus.Logger
 )

@@ -71,9 +71,6 @@ func InitLogger() *logrus.Logger {
 	//file, _ := os.OpenFile(logFilePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 	//mLog.Out = file
 
-	// 设置日志格式（这里使用默认的文本格式，可根据需要自定义）
-	mLog.Formatter = &logrus.TextFormatter{}
-
 	return mLog
 }
 
