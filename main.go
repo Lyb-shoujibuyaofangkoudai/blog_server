@@ -3,6 +3,7 @@ package main
 import (
 	"blog_server/core"
 	"blog_server/global"
+	"blog_server/models/res"
 	"blog_server/routes"
 )
 
@@ -11,6 +12,7 @@ func main() {
 	core.InitConfig()
 	// 初始化啊日志
 	global.Log = core.InitLogger()
+	res.ReadErrorCodeJson()
 	// 初始化数据库
 	global.DB = core.InitGorm()
 
