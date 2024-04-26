@@ -7,7 +7,7 @@ mysql:
     level: ""
 logger:
     level: info
-    prefix: [blog]
+    prefix: "[blog]"
     direct: ./logs
     showLine: false
     logInConsole: false
@@ -16,24 +16,24 @@ system:
     port: 8080
     env: release
 jwt:
-    secret: affggaassffgsgd32346dfgdh456hg
+    secret: "affggaassffgsgd32346dfgdh456hg"
     expires: 48
     issuer: xxx
-qiniu:
+qi_niu:
     access_key: xxx
     secret_key: xxx
     bucket: xxx
     cdn: xxx
     zone: xxx
-    size: xxx
+    size: 5
 email:
     host: smtp.qq.com
     port: 465
     user: xxx@qq.com
     password: xxxxxx
     default_from_email: 手机千万不要放在外套口袋！！！
-    user_ssl: xxx
-    user_tls: xxxx
+    user_ssl: false
+    user_tls: false
 site_info:
     created_at: 2024-04-26
     bei_an: 京ICP备2021001234号-1
