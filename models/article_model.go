@@ -13,7 +13,8 @@ type ArticleModel struct {
 	TagModel     []TagModel     `gorm:"many2many:article_tag" json:"tag_model"`     // 文章标签
 	CommentModel []CommentModel `gorm:"foreignKey:ArticleID" json:"comment_models"` // 文章评论列表
 	UserModel    UserModel      `gorm:"foreignKey:UserID" json:"user_model"`        // 文章作者
-	UserId       uint           `json:"user_id"`                                    // 用户
+	UserID       uint           `json:"user_id"`                                    // 用户
+	ArticleID    uint           `json:"article_id"`                                 // 文章ID
 	Category     string         `gorm:"size:20" json:"category"`                    // 文章分类
 	Source       string         `json:"source"`                                     // 文章来源
 	Link         string         `json:"link"`                                       // 文章来源链接

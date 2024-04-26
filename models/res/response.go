@@ -28,6 +28,11 @@ func Ok(data any, msg string, c *gin.Context) {
 	Result(SUCCESS, data, msg, c)
 }
 
+// OkWith 只返回最基本的成功
+func OkWith(c *gin.Context) {
+	Result(SUCCESS, map[string]string{}, "success", c)
+}
+
 func OkWithMsg(msg string, c *gin.Context) {
 	Result(SUCCESS, map[string]string{}, msg, c)
 }

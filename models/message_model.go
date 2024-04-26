@@ -16,4 +16,4 @@ type MessageModel struct {
 	IsRead  bool   `gorm:"default:false" json:"is_read"` // 接收方是否已读
 	Content string `gorm:"type:longtext" json:"content"` // 消息内容
 }
- 
+
