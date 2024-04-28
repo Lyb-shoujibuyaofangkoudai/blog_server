@@ -113,48 +113,4 @@ func (SettingsApi) SettingsUpdateView(c *gin.Context) {
 	} else {
 		res.FailWithMsg("没有该配置项", c)
 	}
-
-	//switch settingsMap[settingCr.Name] {
-	//case "System":
-	//	cr := config.System{}
-	//	err = c.ShouldBindJSON(&cr)
-	//	err = global.Config.SetValue(global.Config, settingsMap[settingCr.Name], cr)
-	//case "SiteInfo":
-	//	cr := config.SiteInfo{}
-	//	err = c.ShouldBindJSON(&cr)
-	//	err = global.Config.SetValue(global.Config, settingsMap[settingCr.Name], cr)
-	//case "QQ":
-	//	cr := config.QQ{}
-	//	err = c.ShouldBindJSON(&cr)
-	//	err = global.Config.SetValue(global.Config, settingsMap[settingCr.Name], cr)
-	//case "Email":
-	//	cr := config.Email{}
-	//	err = c.ShouldBindJSON(&cr)
-	//	err = global.Config.SetValue(global.Config, settingsMap[settingCr.Name], cr)
-	//case "Jwt":
-	//	cr := config.Jwt{}
-	//	err = c.ShouldBindJSON(&cr)
-	//	err = global.Config.SetValue(global.Config, settingsMap[settingCr.Name], cr)
-	//case "QiNiu":
-	//	cr := config.QiNiu{}
-	//	err = c.ShouldBindJSON(&cr)
-	//	err = global.Config.SetValue(global.Config, settingsMap[settingCr.Name], cr)
-	//default:
-	//	res.FailWithMsg("没有该配置项", c)
-	//}
-
-	//config.CreateAndSetConfig(settingCr.Name,c,settingsMap[settingCr.Name])
-	//if err != nil {
-	//	res.FailWithMsg("修改配置项失败", c)
-	//	return
-	//}
-
-	//err = core.SetYaml()
-	//if err != nil {
-	//	global.Log.Error("修改配置文件中的站点数据失败", err)
-	//	res.FailWithMsg(err.Error(), c)
-	//	return
-	//}
-	//res.OkWith(c)
-	//res.OkWithData(global.Config, c)
 }
