@@ -3,11 +3,11 @@ mysql:
     port: 3306
     db: blog
     user: root
-    password: 123456
+    password: "123456"
     level: ""
 logger:
     level: info
-    prefix: "[blog]"
+    prefix: '[blog]'
     direct: ./logs
     showLine: false
     logInConsole: false
@@ -15,32 +15,13 @@ system:
     host: 0.0.0.0
     port: 8080
     env: release
-jwt:
-    secret: "affggaassffgsgd32346dfgdh456hg"
-    expires: 48
-    issuer: xxx
-qi_niu:
-    access_key: xxx
-    secret_key: xxx
-    bucket: xxx
-    cdn: xxx
-    zone: xxx
-    size: 5
-email:
-    host: smtp.qq.com
-    port: 465
-    user: xxx@qq.com
-    password: xxxxxx
-    default_from_email: 手机千万不要放在外套口袋！！！
-    user_ssl: false
-    user_tls: false
 site_info:
-    created_at: 2024-04-26
+    created_at: "2024-04-26"
     bei_an: 京ICP备2021001234号-1
-    title: 俺的博客
+    title: 俺的优雅博客
     wechat_qr_image: https://q1.qlogo.cn/g?b=qq&nk=123456&s=640
     qq_qr_image: https://q1.qlogo.cn/g?b=qq&nk=123456&s=640
-    qq_number: 123456
+    qq_number: "123456"
     version: 1.0.0
     email: 123456@qq.com
     github: https://github.com/123456
@@ -50,3 +31,26 @@ site_info:
     address: 广东广州
     slogan: 人生如逆旅，我亦是行人
     slogan_en: Life is like a journey, I am also a walker
+qq:
+    app_id: 1103782715_appid
+    key: 1103782715_key
+    redirect: 重定向值
+email:
+    host: smtp.qq.com
+    port: 465
+    user: xxx@qq.com
+    password: xxxxxx
+    default_from_email: 手机千万不要放在外套口袋！！！
+    user_ssl: false
+    user_tls: false
+jwt:
+    secret: affggaassffgsgd32346dfgdh456hg
+    expires: 48
+    issuer: xxx
+qi_niu:
+    access_key: xxx
+    secret_key: xxx
+    bucket: xxx
+    cdn: xxx
+    zone: xxx
+    size: 5
