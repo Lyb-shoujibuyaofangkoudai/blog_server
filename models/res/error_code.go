@@ -9,8 +9,9 @@ import (
 type ErrorCode int
 
 const (
-	SettingsError ErrorCode = 1001
-	ParamsError   ErrorCode = 1002
+	SettingsError    ErrorCode = 1001
+	ParamsError      ErrorCode = 1002
+	FileSizeExceeded ErrorCode = 1010
 )
 
 type ErrorMap map[ErrorCode]string

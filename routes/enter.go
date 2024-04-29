@@ -18,6 +18,7 @@ func InitRoutes() *gin.Engine {
 
 	// 系统配置API
 	routerGroupApp.SettingsRoutes()
+	routerGroupApp.ImagesRoutes()
 
 	return router
 }

@@ -5,6 +5,7 @@ import (
 	"blog_server/core"
 	"blog_server/global"
 	"blog_server/models/res"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"reflect"
@@ -24,7 +25,7 @@ func (SettingsApi) SettingsView(c *gin.Context) {
 	}
 	settingsMap := global.Config.CanGetSettings()
 	if settingsMap[cr.Name] == "" {
-		res.FailWithMsg("没有该配置项", c)
+		res.FailWithMsg(fmt.Sprintf("配置不存在：%v", cr.Name), c)
 		return
 	}
 	settingsInfo := global.Config.GetSettingByName(settingsMap[cr.Name])
@@ -71,6 +72,12 @@ var ConfigTypes = map[string]configType{
 		Typ: reflect.TypeOf(config.QiNiu{}),
 		Set: func(obj interface{}) error {
 			return global.Config.SetValue(global.Config, "QiNiu", obj)
+		},
+	},
+	"Upload": {
+		Typ: reflect.TypeOf(config.Upload{}),
+		Set: func(obj interface{}) error {
+			return global.Config.SetValue(global.Config, "Upload", obj)
 		},
 	},
 }

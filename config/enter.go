@@ -14,6 +14,7 @@ type Config struct {
 	Email    Email    `canGet:"email" yaml:"email"`
 	Jwt      Jwt      `canGet:"jwt" yaml:"jwt"`
 	QiNiu    QiNiu    `canGet:"qiNiu" yaml:"qi_niu"`
+	Upload   Upload   `canGet:"upload" yaml:"upload"`
 }
 
 // CanGetSettings 获取可以给后台显示和修改的配置信息

@@ -48,9 +48,28 @@ jwt:
     expires: 48
     issuer: xxx
 qi_niu:
+    enable: false
     access_key: xxx
     secret_key: xxx
     bucket: xxx
     cdn: xxx
     zone: xxx
     size: 5
+upload:
+    size: 2
+    path: static/upload/test
+    suffix:
+        - jpg
+        - jpeg
+        - bmp
+        - tiff
+        - png
+        - jpeg
+        - gif
+        - webp
+        - svg
+        - pdf
+        - csv
+        - xls
+        - xlsx
+

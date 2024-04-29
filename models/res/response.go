@@ -57,3 +57,10 @@ func FailWithCode(code ErrorCode, c *gin.Context) {
 	}
 	Result(ERROR, map[string]string{}, "未匹配到对应的error code", c)
 }
+
+type FileUpload struct {
+	FileName  string
+	Url       string
+	IsSuccess bool
+	ErrMsg    string
+}
