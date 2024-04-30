@@ -17,7 +17,7 @@ func InitGorm() *gorm.DB {
 	dsn := global.Config.Mysql.Dsn()
 	global.Log.Infof("查看数据库连接地址：%s", dsn)
 	var mysqlLogger logger.Interface
-	if global.Config.System.Env == "env" {
+	if global.Config.System.Env == "debug" {
 		// 开发环境显示的sql
 		mysqlLogger = logger.Default.LogMode(logger.Info)
 	} else {

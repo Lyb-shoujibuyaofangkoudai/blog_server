@@ -13,16 +13,19 @@ import (
 func (ImagesApi) FileUploadView(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
+		global.Log.Errorf("FormFile: %v", err)
 		res.FailWithMsg(err.Error(), c)
 		return
 	}
-	_, suffixErr := utils.CheckFileSuffixIsRight(file)
+	suffix, suffixErr := utils.CheckFileSuffixIsRight(file)
 	if suffixErr != nil {
+		global.Log.Errorf("CheckFileSuffixIsRight: %v", suffixErr)
 		res.FailWithMsg(suffixErr.Error(), c)
 		return
 	}
 	isLimitNotExceeded := utils.CheckFileSizeIsRight(float64(file.Size))
 	if !isLimitNotExceeded {
+		global.Log.Errorf("CheckFileSizeIsRight: %v", err)
 		res.FailWithCode(res.FileSizeExceeded, c)
 		return
 	}
@@ -33,7 +36,7 @@ func (ImagesApi) FileUploadView(c *gin.Context) {
 		res.FailWithMsg(err.Error(), c)
 		return
 	}
-	imgRes := utils.FileHashToDb(file, filePath)
+	imgRes := utils.FileHashToDb(file, filePath, suffix)
 	res.OkWithData(imgRes, c)
 }
 
@@ -47,10 +50,15 @@ func (ImagesApi) FilesUploadViews(c *gin.Context) {
 	var resFileList []res.FileUpload
 	files := form.File["files"]
 	for _, file := range files {
-		_, suffixErr := utils.CheckFileSuffixIsRight(file)
+		suffix, suffixErr := utils.CheckFileSuffixIsRight(file)
 		if suffixErr != nil {
-			res.FailWithMsg(suffixErr.Error(), c)
-			return
+			resFileList = append(resFileList, res.FileUpload{
+				FileName:  file.Filename,
+				Url:       "",
+				IsSuccess: false,
+				ErrMsg:    suffixErr.Error(),
+			})
+			continue
 		}
 		if !utils.CheckFileSizeIsRight(float64(file.Size)) {
 			// 超出文件大小限制
@@ -71,7 +79,7 @@ func (ImagesApi) FilesUploadViews(c *gin.Context) {
 					ErrMsg:    err.Error(),
 				})
 			} else {
-				imgRes := utils.FileHashToDb(file, filePath)
+				imgRes := utils.FileHashToDb(file, filePath, suffix)
 				resFileList = append(resFileList, imgRes)
 			}
 		}

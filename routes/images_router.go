@@ -6,4 +6,5 @@ func (router RouterGroup) ImagesRoutes() {
 	imagesApi := api.ApiGrounpApp.ImagesApi
 	router.POST("file/", imagesApi.FileUploadView)
 	router.POST("files/", imagesApi.FilesUploadViews)
+	router.GET("files/:type", imagesApi.FilesListView)
 }

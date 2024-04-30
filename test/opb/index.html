@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            padding: 20px;
+        }
+        .name {
+            display: flex;
+            align-items: center;
+        }
+        .name h3 {
+            color: #0A1567;
+            margin-left: 10px;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .bg {
+            margin-top: 80px;
+            width: 100%;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
+        }
+        .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        a {
+            color: #2F54EB;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="name">
+            <img class="icon" src="https://www.opbchina.com/assets/logo.518eafb3.png"/>
+            <h3>彼岸OPBChina</h3>
+        </div>
+        <img class="bg" src="./bg.png" alt="">
+        <p>请使用微信扫码查看完整品牌信息</p>
+        <div class="link">
+            <a href="">继续访问网页版</a>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    !(function getParams() {
+        const paramsStr = window.location.search
+        const params = new URLSearchParams(paramsStr)
+        const brandID = params.get('brandID')
+        if(brandID) {
+            // 获取a标签并设置href
+            const a = document.querySelector('a')
+            a.href = `https://www.opbchina.com/englishHome?brandID=${brandID}`
+        }
+    })()
+</script>
+</html>

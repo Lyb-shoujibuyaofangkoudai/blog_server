@@ -7,3 +7,9 @@ type MODEL struct {
 	CreatedAt time.Time `json:"created_at"`            // 创建时间
 	UpdatedAt time.Time `json:"updated_at"`            // 更新时间
 }
+
+type Page struct {
+	Page  int    `form:"page"`
+	Limit int    `form:"limit"`
+	Sort  string `form:"sort"`
+}
