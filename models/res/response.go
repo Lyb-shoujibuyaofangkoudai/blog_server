@@ -1,6 +1,7 @@
 package res
 
 import (
+	"blog_server/utils"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -55,6 +56,11 @@ func OkWithList(list any, count int64, c *gin.Context) {
 
 func Fail(data any, msg string, c *gin.Context) {
 	Result(ERROR, data, msg, c)
+}
+
+func FailWithValidateError[T any](err error, obj *T, c *gin.Context) {
+	msg := utils.GetValidMsg(err, obj)
+	FailWithMsg(msg, c)
 }
 
 func FailWithMsg(msg string, c *gin.Context) {

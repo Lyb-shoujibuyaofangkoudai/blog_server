@@ -2,6 +2,7 @@ package images_api
 
 import (
 	"blog_server/global"
+	"blog_server/models"
 	"blog_server/models/res"
 	"blog_server/utils"
 	"fmt"
@@ -9,7 +10,7 @@ import (
 	"strconv"
 )
 
-// FileUploadView 上传单个图片
+// FileUploadView 上传单个文件
 func (ImagesApi) FileUploadView(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
@@ -36,11 +37,11 @@ func (ImagesApi) FileUploadView(c *gin.Context) {
 		res.FailWithMsg(err.Error(), c)
 		return
 	}
-	imgRes := utils.FileHashToDb(file, filePath, suffix)
+	imgRes := models.FileHashToDb(file, filePath, suffix)
 	res.OkWithData(imgRes, c)
 }
 
-// FilesUploadViews 上传多个图片
+// FilesUploadViews 上传多个文件
 func (ImagesApi) FilesUploadViews(c *gin.Context) {
 	form, err := c.MultipartForm()
 	if err != nil {
@@ -49,6 +50,7 @@ func (ImagesApi) FilesUploadViews(c *gin.Context) {
 	}
 	var resFileList []res.FileUpload
 	files := form.File["files"]
+	global.Log.Infof("本次上传文件数量为%v", len(files))
 	for _, file := range files {
 		suffix, suffixErr := utils.CheckFileSuffixIsRight(file)
 		if suffixErr != nil {
@@ -79,7 +81,7 @@ func (ImagesApi) FilesUploadViews(c *gin.Context) {
 					ErrMsg:    err.Error(),
 				})
 			} else {
-				imgRes := utils.FileHashToDb(file, filePath, suffix)
+				imgRes := models.FileHashToDb(file, filePath, suffix)
 				resFileList = append(resFileList, imgRes)
 			}
 		}
