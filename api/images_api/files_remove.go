@@ -17,6 +17,7 @@ func (ImagesApi) FileRemoveView(c *gin.Context) {
 	}
 	global.Log.Infof("fileIds: %v", fileIds.Ids)
 	var fileList []models.ImageModel
+	// 使用Find查询 如果有条件的话只能用ID查找，如果需要用其他字段来查询，需要使用Where
 	count := global.DB.Find(&fileList, fileIds.Ids).RowsAffected
 	global.Log.Infof("count: %v", count)
 	if count == 0 {

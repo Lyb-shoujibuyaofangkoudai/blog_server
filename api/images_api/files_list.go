@@ -38,7 +38,7 @@ func (ImagesApi) FilesListView(c *gin.Context) {
 	if fileTypeParams.Type != "all" {
 		imageModel.Type = fileTypeParams.Type
 	}
-	list, count, err := common.ComList(imageModel, common.Option{
+	list, count, err := common.ComList(&imageModel, common.Option{
 		Page: pageQuery,
 		//Select: []string{"name", "path", "suffix", "type"},
 	})
