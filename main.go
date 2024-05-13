@@ -6,6 +6,7 @@ import (
 	"blog_server/global"
 	"blog_server/models/res"
 	"blog_server/routes"
+	"blog_server/utils/validators"
 )
 
 func main() {
@@ -24,6 +25,10 @@ func main() {
 	}
 
 	router := routes.InitRoutes()
+	// 注册自定义校验器
+	validators.RegisterPhoneValidators()
+	validators.LoginCodeValidate()
+
 	addr := global.Config.System.Addr()
 	global.Log.Infof("程序运行在：%s", addr)
 	err := router.Run(addr)

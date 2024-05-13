@@ -21,6 +21,7 @@ type ImageModel struct {
 	FileLocation ctype.FileLocationType `gorm:"size:8;default:1" json:"file_location"`
 }
 
+// BeforeDelete 删除前的钩子
 func (file *ImageModel) BeforeDelete(tx *gorm.DB) (err error) {
 	global.Log.Infof("删除图片", file.FileLocation, ctype.Local)
 	if file.FileLocation == ctype.Local {

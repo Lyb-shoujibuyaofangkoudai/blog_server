@@ -20,7 +20,7 @@ func (AdvertApi) AdvertList(c *gin.Context) {
 		Select: nil,
 	}
 	var advertModel models.AdvertModel
-	// todo: 这里一直无法获取到 referer，有传过来，但是值为空不知道为什么
+	// todo: 这里一直无法获取到 referer，有传过来，但是值为空不知道为什么，之后改成用token校验
 	referer := c.GetHeader("Referer")
 	global.Log.Infof("referer: %s", referer)
 	if strings.Contains(referer, "admin") {
@@ -30,7 +30,7 @@ func (AdvertApi) AdvertList(c *gin.Context) {
 		isShow := true
 		advertModel.IsShow = &isShow
 	}
-	list, count, err := common.ComList(&advertModel, option)
+	list, count, err := common.ComSingleList(&advertModel, option)
 	if err != nil {
 		res.FailWithMsg(err.Error(), c)
 		return

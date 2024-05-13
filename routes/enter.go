@@ -22,5 +22,7 @@ func InitRoutes() *gin.Engine {
 	routerGroupApp.SettingsRoutes()
 	routerGroupApp.ImagesRoutes()
 	routerGroupApp.AdvertRouter()
+	routerGroupApp.MenuRouter()
+	routerGroupApp.UserRouter()
 	return router
 }

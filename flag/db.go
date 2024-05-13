@@ -12,11 +12,11 @@ func MakeMigration() {
 
 	global.Log.Infof("开始迁移数据库")
 	err = global.DB.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
-		&models.ImageModel{},
+		//&models.ImageModel{},
 		//&models.TagModel{},
 		//&models.MessageModel{},
 		//&models.AdvertModel{},
-		//&models.UserModel{},
+		&models.UserModel{},
 		//&models.CommentModel{},
 		//&models.ArticleModel{},
 		//&models.MenuModel{},

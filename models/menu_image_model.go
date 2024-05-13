@@ -1,5 +1,6 @@
 package models
 
+// MenuImageModel 菜单图片关联表
 type MenuImageModel struct {
 	MenuID     uint       `json:"menu_id"`
 	ImageID    uint       `json:"image_id"`

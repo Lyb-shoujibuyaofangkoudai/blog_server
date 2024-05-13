@@ -44,9 +44,10 @@ email:
     user_ssl: false
     user_tls: false
 jwt:
-    secret: affggaassffgsgd32346dfgdh456hg
-    expires: 48
-    issuer: xxx
+    expires: 48 # hour
+    issuer: "gin_chat"
+    subject: "chat"
+    grant_scope: "chat,read user info"
 qi_niu:
     enable: false
     access_key: xxx
