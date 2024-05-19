@@ -24,10 +24,19 @@ type UserInfo struct {
 
 type UserPhone struct {
 	Phone string `form:"phone" binding:"required,phone" msg:"手机号码格式不正确"`
+	Code  string `form:"code" binding:"required" msg:"验证码不能为空"`
 }
 
 type UserEmail struct {
 	Email string `form:"email" binding:"required,email" msg:"邮箱格式不正确"`
+	Code  string `form:"code" binding:"required" msg:"验证码不能为空"`
+}
+
+// 生成随机验证码
+func generateCode() string {
+	rand.Seed(uint64(time.Now().UnixNano()))
+	code := rand.Intn(1000000)
+	return fmt.Sprintf("%06d", code)
 }
 
 var signTypeMap = map[int]func(c *gin.Context) (any, string, error){
