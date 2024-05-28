@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"math/rand"
 	"mime/multipart"
 	"net"
 	"path"
@@ -73,6 +74,7 @@ func GetValidMsg(err error, obj any) string {
 	return "未知错误"
 }
 
+// 获取用户真实IP地址
 func GetUserRealIP(c *gin.Context) string {
 	// 获取客户端IP
 	// 先尝试从 X-Real-IP 头部获取 IP
@@ -98,4 +100,16 @@ func GetUserRealIP(c *gin.Context) string {
 	}
 	return ip
 
+}
+
+// GenerateRandomCode 随机生成 len 位验证码
+func GenerateRandomCode(len int8) string {
+	rand.Seed(time.Now().UnixNano()) // 初始化随机数生成器
+
+	code := make([]byte, len) // 创建一个6位的字节切片
+	for i := range code {
+		code[i] = byte(rand.Intn(10) + '0') // 生成0-9的随机数字，并转换为ASCII字符
+	}
+
+	return string(code) // 转换为字符串并返回
 }

@@ -17,6 +17,8 @@ func main() {
 	res.ReadErrorCodeJson()
 	// 初始化数据库
 	global.DB = core.InitGorm()
+	// 初始化Redis
+	global.Redis = core.InitRedis()
 
 	option := flag.Parse()
 	if flag.IsStopWeb(&option) {

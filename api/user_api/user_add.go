@@ -6,6 +6,8 @@ import (
 	"blog_server/models/ctype"
 	"blog_server/models/res"
 	"blog_server/utils"
+	"context"
+	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/exp/rand"
@@ -24,10 +26,12 @@ type UserInfo struct {
 
 type UserPhone struct {
 	Phone string `form:"phone" binding:"required,phone" msg:"手机号码格式不正确"`
+	Code  string `form:"code" binding:"required" msg:"验证码不能为空"`
 }
 
 type UserEmail struct {
 	Email string `form:"email" binding:"required,email" msg:"邮箱格式不正确"`
+	Code  string `form:"code" binding:"required" msg:"验证码不能为空"`
 }
 
 var signTypeMap = map[int]func(c *gin.Context) (any, string, error){
@@ -49,6 +53,15 @@ var signTypeMap = map[int]func(c *gin.Context) (any, string, error){
 		if err != nil {
 			res.FailWithValidateError(err, &userEmail, c)
 			return nil, "", err
+		}
+		code := global.Redis.Get(context.Background(), userEmail.Email).Val()
+		global.Log.Infof("redis中的验证码为：%s", code)
+		if code == "" {
+			res.FailWithMsg("验证码已过期，请重新获取验证码", c)
+			return nil, "", errors.New("验证码已过期")
+		} else if userEmail.Code != code {
+			res.FailWithMsg("验证码错误", c)
+			return nil, "", errors.New("验证码错误")
 		}
 
 		return userEmail, "userEmail", nil
@@ -88,9 +101,8 @@ func (UserApi) Register(c *gin.Context) {
 			userModel.SignStatus = ctype.SignPhone
 		}
 	}
-	global.Log.Infof("userModel查询条件: %v", userModel)
+
 	affected := global.DB.Where(&userModel).First(&userModel).RowsAffected
-	global.Log.Infof("affected: %v", affected)
 	if affected > 0 {
 		res.OkWithMsg("该用户已存在", c)
 		return

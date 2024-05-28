@@ -15,6 +15,7 @@ type Config struct {
 	Jwt      Jwt      `canGet:"jwt" yaml:"jwt"`
 	QiNiu    QiNiu    `canGet:"qiNiu" yaml:"qi_niu"`
 	Upload   Upload   `canGet:"upload" yaml:"upload"`
+	Redis    Redis    `yaml:"redis"`
 }
 
 // CanGetSettings 获取可以给后台显示和修改的配置信息

@@ -38,11 +38,12 @@ qq:
 email:
     host: smtp.qq.com
     port: 465
-    user: xxx@qq.com
-    password: xxxxxx
+    user: 1103782715@qq.com
+    password: "ahvvuoqmrmiyfjhj"
     default_from_email: 手机千万不要放在外套口袋！！！
     user_ssl: false
     user_tls: false
+    authorization_code: "ahvvuoqmrmiyfjhj" # QQ邮箱 授权码
 jwt:
     expires: 48 # hour
     issuer: "gin_chat"
@@ -56,6 +57,13 @@ qi_niu:
     cdn: xxx
     zone: xxx
     size: 5
+redis:
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    db: 0
+    pool_size: 10
+    mini_dle_conns: 10
 upload:
     size: 2
     path: static/upload/test
