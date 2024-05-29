@@ -34,6 +34,7 @@ type UserEmail struct {
 	Code  string `form:"code" binding:"required" msg:"验证码不能为空"`
 }
 
+// 注册方式映射 采用策略模式
 var signTypeMap = map[int]func(c *gin.Context) (any, string, error){
 	int(ctype.SignQQ): func(c *gin.Context) (any, string, error) {
 		global.Log.Info("QQ注册")
@@ -77,7 +78,7 @@ var signTypeMap = map[int]func(c *gin.Context) (any, string, error){
 	},
 }
 
-// Register todo: 待完善注册功能
+// Register todo: 待完善注册功能 QQ GITEE 手机 微信 注册未完善
 func (UserApi) Register(c *gin.Context) {
 
 	var userInfo UserInfo

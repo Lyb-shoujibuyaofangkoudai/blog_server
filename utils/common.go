@@ -74,7 +74,7 @@ func GetValidMsg(err error, obj any) string {
 	return "未知错误"
 }
 
-// 获取用户真实IP地址
+// GetUserRealIP 获取用户真实IP地址
 func GetUserRealIP(c *gin.Context) string {
 	// 获取客户端IP
 	// 先尝试从 X-Real-IP 头部获取 IP

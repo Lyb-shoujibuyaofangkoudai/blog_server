@@ -30,9 +30,9 @@ func parsePriKeyBytes(buf []byte) (*rsa.PrivateKey, error) {
 }
 
 // GenerateTokenUsingRS256 生成token
-func GenerateTokenUsingRS256(userID int, username string) (string, error) {
+func GenerateTokenUsingRS256(userID uint, username string) (string, error) {
 	claim := MyCustomClaims{
-		UserID:   userID,
+		UserID:   int(userID),
 		Username: username,
 		//GrantScope: viper.GetString("jwt.grant_scope"),
 		GrantScope: global.Config.Jwt.GrantScope,
@@ -54,7 +54,7 @@ func GenerateTokenUsingRS256(userID int, username string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	global.Log.Infof("查看rsa_pri_key：%v", rsaPriKey)
+	//global.Log.Infof("查看rsa_pri_key：%v", rsaPriKey)
 	token, err := jwt.NewWithClaims(jwt.SigningMethodRS256, claim).SignedString(rsaPriKey)
 	return token, err
 }

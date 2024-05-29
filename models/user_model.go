@@ -13,7 +13,7 @@ type UserModel struct {
 	Email         string           `gorm:"size:128" json:"email"`                                                                               // 邮箱
 	Tel           string           `gorm:"size:18" json:"tel"`                                                                                  // 手机号
 	Addr          string           `gorm:"size:64" json:"address"`                                                                              // 地址
-	Token         string           `gorm:"size:64" json:"token"`                                                                                // token
+	Token         string           `gorm:"size:64" json:"token"`                                                                                // token 后续写到redis中，不写入这里了，原来是想做永久登录的
 	IP            string           `gorm:"size:64" json:"ip"`                                                                                   // ip
 	Role          ctype.Role       `gorm:"size:4;default:1" json:"role"`                                                                        // 角色 1 管理员 2 普通用户 3 游客 4 被禁用
 	SignStatus    ctype.SignStatus `gorm:"type=smallint(6)" json:"sign_status"`                                                                 // 注册来源 qq 邮箱 手机等
